@@ -1,0 +1,24 @@
+<div layout="column" layout-fill style="width:100vw; height:auto">
+    <md-toolbar class="md-primary" style="width:100vw; height:auto">
+      <div class="md-toolbar-tools">
+       <md-button class="md-raised md-accent" aria-label="Home" ui-sref="home.main"> Home </md-button>
+        
+        <!--<md-truncate style="position: absolute; left: 90px; right: 170px; top: 13px; bottom: 13px;">Toolbar with Standard Buttons</md-truncate>-->
+        <span flex></span>
+        <md-button aria-label="Join">Join Us</md-button>
+        <!--<md-button class="md-fab md-mini" aria-label="Favorite"> 
+          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+        </md-button>-->
+      </div>
+    </md-toolbar>
+    <md-tabs md-selected="selectedIndex" md-border-bottom class="md-primary md-hue-3">
+      <md-tab label="Photos" ui-sref=".photos"> </md-tab>
+      <md-tab label="Basic Info" ui-sref=".basic-info"> </md-tab>
+      <md-tab label="Location" ui-sref=".location-info"> </md-tab>
+      <md-tab label="Personal" ui-sref=".personal-info"> </md-tab>
+    </md-tabs>
+    <md-content flex id="edit-profile-container">
+      <div class="main-body-content" layout-fill ui-view flex> </div>
+    </md-content>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div layout="column" layout-fill style="width:100vw; height:auto">
+  <md-toolbar class="md-primary">
+    <div layout="row" layout-align="start center">
+      <div>
+        <md-button class="md-raised md-accent" ng-if="vm.auth.isAuthenticated()" ng-click="vm.logout()" aria-label="Log Out"> Log Out </md-button>
+        <md-button class="md-raised md-primary" ng-if="!vm.auth.isAuthenticated()" ng-click="vm.auth.login()" aria-label="Log In"> Log In </md-button>
+      </div>
+      <div layout="row" flex>
+        <md-input-container flex>
+          <md-icon md-svg-src="images/icons/ic_search_white_24px.svg" class="icons"></md-icon>
+          <input ng-model="searchInput" placeholder="Search here">
+        </md-input-container>
+      </div>
+      <div>
+        <md-list flex  ng-click="vm.toggleProfileSidebar()"  ng-hide="isProfileSidebarOpen()">
+          <md-list-item class="md-3-line side-menuhome" style="padding-bottom: 0; float: right;">
+            <div class="md-list-item-text" layout="column" flex style="padding-bottom: 0; padding-right: 16px; position: relative;">
+              <md-truncate>
+                <h3>{{ vm.username}}</h3>
+              </md-truncate>
+              <h4>{{ vm.role}}</h4>
+            </div>
+            <img ng-src="{{ vm.picture }}" class="md-avatar lazyload" alt=""> </md-list-item>
+        </md-list>
+      </div>
+    </div>
+  </md-toolbar>
+  <md-nav-bar class="md-primary md-hue-3" md-selected-nav-item="selectedNavIndex" nav-bar-aria-label="navigation links">
+      <md-nav-item md-nav-sref=".index" name="index">Members</md-nav-item>
+      <md-nav-item md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item>
+      <md-nav-item md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item>
+      <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
+      <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
+      <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
+      -->
+    </md-nav-bar>
+  <div class="main-body-content" layout-fill ui-view flex style="background:blue;"> 
+  </div>
+  <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+    <div layout="column" flex layout-align="center center" layout-padding> <img ng-src="{{ vm.picture}}" class="md-avatar lazyload circular-img" alt="">
+      <h3 class="username-profile-subheading">{{vm.username}}</h3>
+      <small class="role-profile-subheading">{{vm.role}}</small> </div>
+    <md-content layout-padding>
+      <md-divider></md-divider>
+      <form>
+          <div flex layout="column" layout-wrap>
+            <div flex layout="row">
+              <h4>Age</h4>
+            </div>
+            <div flex layout="row" layout-wrap>
+              <md-truncate flex>{{vm.DOB | AgeFilter}}</md-truncate>
+            </div>
+          </div>
+          <div flex layout="column" layout-wrap>
+            <div flex layout="row">
+              <h4>Profession</h4>
+            </div>
+            <div flex layout="row" layout-wrap>
+              <md-truncate flex>{{vm.profession}}</md-truncate>
+            </div>
+          </div>
+        <div flex layout="column" layout-wrap>
+          <div flex layout="row">
+            <h4>Brand/Company</h4>
+          </div>
+          <div flex layout="row" layout-wrap>
+            <md-truncate flex>{{vm.brand}}</md-truncate>
+          </div>
+        </div>     
+        <div flex layout="column" layout-wrap>
+          <div flex layout="row">
+            <h4>Location</h4>
+          </div>
+          <div flex layout="row" layout-wrap>
+            <md-truncate flex>{{vm.location}}</md-truncate>
+          </div>
+        </div>
+        <div flex layout="column" layout-wrap>
+          <div flex layout="row">
+            <h4>Bio</h4>
+          </div>
+          <div flex layout="row" layout-wrap>
+            <md-truncate flex>{{vm.bio}}</md-truncate>
+          </div>
+        </div>
+		  </br>
+        <div flex layout="row" layout-wrap layout-align="space-around center">
+           <md-button class="md-raised" ng-click="vm.closeProfileSidebar()">Cancel</md-button>
+      		<md-button class="md-raised md-primary" ng-click="vm.editProfile()">Edit</md-button>
+        </div>
+      </form>
+    </md-content>
+  </md-sidenav>
+</div>

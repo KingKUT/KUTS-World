@@ -1,0 +1,7 @@
+<md-content md-theme="docs-dark">
+ <ui-view layout-fill></ui-view>
+  <div layout="row" layout-sm="column" layout-align="space-around" layout-fill ng-show="vm.isActivated()">
+    <md-progress-circular md-diameter="96" ng-disabled="!vm.isActivated()"></md-progress-circular>
+  </div>
+</md-content>
+

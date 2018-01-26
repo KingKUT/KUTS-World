@@ -1,0 +1,24 @@
+<div layout="column" ng-cloak class="md-inline-form" layout-padding layout-margin layout-fill>
+  <form name="registerForm3" ng-submit="registerForm3.$valid && vm.save(registerForm3)">
+    <div>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Headline (Optional)</label>
+        <input name="headline" ng-model="vm.headline" placeholder="Say something cool.">
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-sm>
+      	<md-chips ng-model="vm.interests" name="interests" readonly="false"
+                md-removable="true" md-max-chips="25" placeholder="Interests...">
+        <div class="errors" ng-messages="registerForm3.interests.$error">
+          <div ng-message="md-max-chips">Maximum number of chips reached.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Biography</label>
+        <textarea froala="froalaOptions" ng-model="vm.bio" name="biography"></textarea>
+      </md-input-container>
+      <div layout="row" layout-align="center center">
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="buttonDisabled" flex-gt-sm>Save</md-button>
+      </div>
+    </div>
+  </form>
+</div>

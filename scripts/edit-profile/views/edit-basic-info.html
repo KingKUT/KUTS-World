@@ -1,0 +1,58 @@
+<div layout="column" ng-cloak class="md-inline-form" layout-padding layout-margin layout-fill>
+  <form ng-submit="registerForm1.$valid && vm.save(registerForm1)" name="registerForm1">
+    <md-content layout-padding>
+      <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+        <div flex layout="row" layout-xs="column">
+          <md-input-container flex-gt-md="40" flex="100" flex-order="1" flex-order-gt-md="-1">
+            <label>Email</label>
+            <input ng-model="vm.user.email" type="email" disabled>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-md="60" flex="100" flex-order="-1" flex-order-gt-md="1">
+            <label>Profile name</label>
+            <input md-maxlength="30" minlength="3" required ng-pattern='/^(\w+\s?)*\s*$/' name="name" ng-model="vm.username">
+            <small>This is the name others will know you by.</small>
+            <div ng-messages="registerForm1.name.$error">
+              <div ng-message="required">Required.</div>
+              <div ng-message="md-maxlength">Your profile name has to be less than 30 characters long.</div>
+              <div ng-message="minlength">Your profile name has to be at least 3 characters long.</div>
+              <div ng-message="pattern">A name starting with a space or with multiple spaces between words is not allowed</div>
+            </div>
+          </md-input-container>
+        </div>
+      </md-content>
+      <div layout="row" layout-xs="column">
+        <md-input-container class="md-block" flex-gt-md="80" flex="100" flex-order="1" flex-order-gt-md="-1">
+          <label>Brand/Organization</label>
+          <input ng-model="vm.brand" name="brand" required md-maxlength="75" minlength="3">
+          <small>Are you affilliated with/Representing a company/organization? Brand? Label? Or just independent/self-employed? Whatever the case put it here.</small>
+          <div ng-messages="registerForm1.brand.$error">
+            <div ng-message="required">Required.</div>
+            <div ng-message="md-maxlength">Try to keep it a little shorter here.</div>
+            <div ng-message="minlength">Must be at least 3 characters long.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex-gt-md="20" flex="100" flex-order="-1" flex-order-gt-md="1">
+          <label>Profession</label>
+          <md-select ng-model="vm.userProfession" name="profession" required>
+            <md-option ng-repeat="profession in vm.professions" ng-value="profession.text"> {{profession.text}} </md-option>
+          </md-select>
+          <div class="errors" ng-messages="registerForm1.profession.$error">
+            <div ng-message="required">Required</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div flex layout="row" layout-xs="column">
+        <md-input-container class="md-block" flex-gt-md="40" flex="100">
+          <label>Date of birth</label>
+          <md-datepicker ng-model="vm.DOB" required name="DOB" md-current-view="year" md-max-date="vm.maxDate" md-open-on-focus></md-datepicker>
+          <div class="errors" ng-messages="registerForm1.DOB.$error">
+            <div ng-message="required">Required</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" layout-align="center center">
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="buttonDisabled" flex-gt-sm>Save</md-button>
+      </div>
+    </md-content>
+  </form>
+</div>

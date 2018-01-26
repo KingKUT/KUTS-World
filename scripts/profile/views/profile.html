@@ -1,0 +1,26 @@
+<div style="position: relative;" layout-fill>
+  <div class="carousel-outer" style="position: relative;" >
+    <div style="height: 305px; background:red;"> <img layout-fill ng-src="{{vm.slide.image}}" class="scale" data-scale="best-fit" data-align="center" style="position:relative; margin:auto;">
+      <div class="carousel-caption">
+        <h4>{{vm.slide.caption}}</h4>
+        <p>{{vm.slide.subcaption}}</p>
+      </div>
+    </div>
+  </div>
+  <div style="position: absolute; height: 400px; top: 90px; left: 30px; z-index: 99; background:green">
+    <md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-whiteframe="4">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+      <md-content layout-padding>
+        <md-button ng-click="close()" class="md-primary" hide-gt-md> Close Sidenav Left </md-button>
+        <p hide show-gt-md> This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display. </p>
+      </md-content>
+    </md-sidenav>
+  </div>
+</div>

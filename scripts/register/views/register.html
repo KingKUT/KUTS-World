@@ -1,0 +1,130 @@
+<div layout="column" ng-cloak class="md-inline-form" layout-padding layout-margin layout-fill ng-switch="vm.page">
+  <form ng-submit="registerForm1.$valid && vm.nextPage(registerForm1)" name="registerForm1" ng-switch-when="1">
+    <md-content layout-padding>
+      <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+        <div flex layout="row" layout-xs="column">
+          <md-input-container flex-gt-md="40" flex="100" flex-order="1" flex-order-gt-md="-1">
+            <label>Email</label>
+            <input ng-model="vm.user.email" type="email" disabled>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-md="60" flex="100" flex-order="-1" flex-order-gt-md="1">
+            <label>Profile name</label>
+            <input md-maxlength="30" minlength="3" required ng-pattern='/^(\w+\s?)*\s*$/' name="name" ng-model="vm.username">
+            <small>This is the name others will know you by.</small>
+            <div ng-messages="registerForm1.name.$error">
+              <div ng-message="required">Required.</div>
+              <div ng-message="md-maxlength">Your profile name has to be less than 30 characters long.</div>
+              <div ng-message="minlength">Your profile name has to be at least 3 characters long.</div>
+              <div ng-message="pattern">A name containing special characters, starting with a space or containing multiple spaces between words is not allowed</div>
+            </div>
+          </md-input-container>
+        </div>
+      </md-content>
+      <div layout="row" layout-xs="column">
+        <md-input-container class="md-block" flex-gt-md="80" flex="100" flex-order="1" flex-order-gt-md="-1">
+          <label>Brand/Organization</label>
+          <input ng-model="vm.brand" name="brand" required md-maxlength="75" minlength="3">
+          <small>Are you affilliated with/Representing a company/organization? Brand? Label? Or just independent/self-employed? Whatever the case put it here.</small>
+          <div ng-messages="registerForm1.brand.$error">
+            <div ng-message="required">Required.</div>
+            <div ng-message="md-maxlength">Try to keep it a little shorter here.</div>
+            <div ng-message="minlength">Must be at least 3 characters long.</div>
+          </div>
+        </md-input-container>
+        <md-input-container flex-gt-md="20" flex="100" flex-order="-1" flex-order-gt-md="1">
+          <label>Profession</label>
+          <md-select ng-model="vm.profession" name="profession" required>
+            <md-option ng-repeat="profession in vm.professions" ng-value="profession.text"> {{profession.text}} </md-option>
+          </md-select>
+          <div class="errors" ng-messages="registerForm1.profession.$error">
+            <div ng-message="required">Required</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div flex layout="row" layout-xs="column">
+        <md-input-container class="md-block" flex-gt-md="40" flex="100">
+          <label>Date of birth</label>
+          <md-datepicker ng-model="vm.DOB" required name="DOB" md-current-view="year" md-max-date="vm.maxDate" md-open-on-focus></md-datepicker>
+          <div class="errors" ng-messages="registerForm1.DOB.$error">
+            <div ng-message="required">Required</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout="row" layout-align="center center">
+        <md-button type="submit" class="md-raised md-primary" flex-gt-sm>Continue</md-button>
+      </div>
+    </md-content>
+  </form>
+  
+  <!------------ PAGE TWO BEGINS ------------------>
+  <form name="registerForm2" ng-switch-when="2" ng-submit="registerForm2.$valid && vm.verifyLocation(registerForm2)">
+    <div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm="60" flex="100">
+          <label>Country</label>
+          <md-select  ng-model="vm.country" required name="country" placeholder="Country" ng-model-options="{trackBy: '$value.code'}" ng-change="updateLocationForm(registerForm2)">
+            <md-option ng-repeat="country in vm.countries" ng-value="country"> {{country.name}} </md-option>
+          </md-select>
+          <div class="errors" ng-messages="registerForm2.country.$error">
+            <div ng-message="required">Required</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm="40" flex="100">
+          <label>City</label>
+          <input ng-model="vm.city" ng-required="!vm.isAmerica() || !vm.postalCode">
+        </md-input-container>
+        <md-input-container ng-if="vm.statesAndProvinces && vm.statesAndProvinces.length > 0" class="md-block" flex-gt-md="60">
+          <label>State</label>
+          <md-select ng-model="vm.stateOrProvince" required name="stateOrProvince" ng-model-options="{trackBy: '$value.short'}">
+            <md-option ng-repeat="state in vm.statesAndProvinces" ng-value="state"> {{state.name}} </md-option>
+          </md-select>
+          <div class="errors" ng-messages="registerForm2.stateOrProvince.$error">
+            <div ng-message="required">Required</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row" ng-if="vm.isAmerica()">
+        <md-input-container class="md-block" flex-gt-sm="40" flex="100">
+          <label>Zip Code</label>
+          <input name="postalCode" ng-model="vm.postalCode">
+          <small>Your zip will allow us to provide you with a more optimized experience based on your location.</small> </md-input-container>
+      </div>
+      <div layout-gt-sm="row" layout-align-gt-sm="space-around center">
+        <md-button class="md-raised md-warn" flex-gt-sm flex-order-gt-sm="-1" ng-click="vm.goBack()">Back</md-button>
+        <md-button type="submit" class="md-raised md-primary" flex-gt-sm flex-order-gt-sm="1" style="float: right;">Continue</md-button>
+      </div>
+    </div>
+  </form>
+
+    <!------------ PAGE THREE BEGINS ------------------>
+    
+    <form name="registerForm3" ng-switch-when="3" ng-submit="vm.save(registerForm3)">
+    <div>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Headline (Optional)</label>
+        <input name="headline" ng-model="vm.headline" placeholder="Say something cool.">
+      </md-input-container>
+      <md-input-container class="md-block" flex-gt-sm>
+      	<md-chips ng-model="vm.interests" name="interests" readonly="false"
+                md-removable="true" md-max-chips="25" placeholder="Interests...">
+        <div class="errors" ng-messages="registerForm3.interests.$error">
+          <div ng-message="max-chips">Maximum number of chips reached.</div>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Biography</label>
+        <textarea froala="froalaOptions" ng-model="vm.bio" name="biography"></textarea>
+        <div class="errors" ng-messages="registerForm3.biography.$error">
+            <div ng-message="required">Your bio is too short. Come on have some fun!</div>
+        </div>
+      </md-input-container>
+       <div layout-gt-sm="row" layout-align-gt-sm="space-around center">
+        <md-button class="md-raised md-warn" flex-gt-sm flex-order-gt-sm="-1" ng-click="vm.goBackTwo()">Back</md-button>
+        <md-button type="submit" class="md-raised md-primary" ng-disabled="buttonDisabled" flex-gt-sm flex-order-gt-sm="1" style="float: right;">Save</md-button>
+      </div>
+    </div>
+  </form>
+  <!--</div>-->
+</div>

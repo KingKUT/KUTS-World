@@ -1,0 +1,126 @@
+
+.re-albm-preview-container {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+	border: 1px solid #ddd;
+	padding: 5px;
+	width: 100%;
+	position: relative;
+}
+
+.re-albm-preview-container .album-outer-wrapper {
+	width: 100%;
+}
+
+.re-albm-preview-container .album-outer-wrapper .stack {
+	width: 100%;
+}
+
+.re-albm-preview-container .album-outer-wrapper .stack .album-inner-wrapper {
+	-moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+	display: table;
+	position: relative;
+	padding: 6px;
+	height: 525px;
+	border: 1px solid #ddd;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	width: 98%;
+	margin: auto;
+}
+
+.re-albm-preview-container .album-outer-wrapper .stack .album-inner-wrapper > img, .re-albm-preview-container .album-outer-wrapper .stack .album-inner-wrapper > video, .re-albm-preview-container .album-outer-wrapper .stack .album-inner-wrapper > object {
+	max-height: 500px;
+}
+
+.re-albm-preview-container .album-outer-wrapper .buttons {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.46);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  left: 0;
+  top: 55%;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  line-height: 35px;
+  text-decoration: none;
+  font-size: 22px;
+  z-index: 100;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.re-albm-preview-container .album-outer-wrapper .buttons:hover {
+  transform: scale(1.3, 1.3);
+}
+/*.re-albm-preview-container .album-container .prev {
+  left: 15px;
+  right: auto;
+}*/
+/*.re-albm-preview-container .album-container .next {
+  right: 0;
+} */
+
+.re-albm-preview-container .album-outer-wrapper .prev {
+  left: 25px;
+  right: auto;
+}
+.re-albm-preview-container .album-outer-wrapper .next {
+  left: auto;
+  right: 25px;
+}
+
+.re-albm-preview-container .album-outer-wrapper:hover > .buttons.prev {
+  display: inline-block;
+  animation: bounceInLeft 200ms;
+}
+.re-albm-preview-container .album-outer-wrapper:hover > .buttons.next {
+  display: inline-block;
+  animation: bounceInRight 200ms;
+}
+
+/*.re-albm-preview-container .stack .carousel .buttons:hover {
+  color: #C01313 ;
+  background: #fff;
+}*/
+
+@keyframes bounceInLeft {
+  0% { opacity: 0; transform: translateX(40px); } 
+  // 60% { opacity: 1; transform: translateX(20px); } 
+  // 80% { transform: translateX(20px); } 
+  100% { transform: translateX(0); } 
+}
+
+@keyframes bounceInRight {
+  0% { opacity: 0; transform: translateX(-40px); } 
+  // 60% { opacity: 1; transform: translateX(-20px); } 
+  // 80% { transform: translateX(20px); } 
+  100% { transform: translateX(0); } 
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}

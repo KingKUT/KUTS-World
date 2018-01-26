@@ -1,0 +1,15 @@
+<md-content class="md-padding member-preview-container" layout-xs="column" layout="row">
+  <div  flex-xs flex-gt-xs="15" layout="column" ng-repeat="onlineMember in vm.members.online|limitTo:10" layout-wrap>
+    <div>
+      <md-card>
+        <re-file ng-if="onlineMember.thumbnail" re-file-obj="onlineMember.thumbnail" lf-unknow-class="strUnknowIconCls" class="member-preview-card" security="true"/>
+        <re-file ng-if="!onlineMember.thumbnail" re-file-obj="unknownFile" lf-unknow-class="strUnknowIconCls" class="member-preview-card" />
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon md-svg-icon="images/icons/ic_message_black_24px.svg"></md-icon>
+          </md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+</md-content>

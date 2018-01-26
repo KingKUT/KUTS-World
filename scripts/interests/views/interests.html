@@ -1,0 +1,17 @@
+<md-content class="md-padding" layout="column">
+<div flex="80" layout="column" layout-align="center center">
+<h2 class="md-title">What are your interests?</h2>
+</div>
+<form name="interestForm" ng-submit="vm.saveData()">
+    <md-chips layout-fill name="interestName" ng-model="vm.interests" readonly="false" md-removable="true" md-separator-keys="vm.separatorKeys"
+              md-enable-chip-edit="true" md-max-chips="15" placeholder="eg music, film, etc..."></md-chips>
+         <div class="errors" ng-messages="interestForm.interestName.$error">
+        <div ng-message="md-max-chips">Maximum number of chips reached.</div>
+      </div>
+    <br/>
+     <div layout-gt-sm="row" layout-align-gt-sm="space-around center">
+        <md-button class="md-raised md-warn" flex-gt-sm flex-order-gt-sm="-1" ng-click="vm.skip()">I'll do this later</md-button>
+        <md-button type="submit" ng-show="vm.interests.length > 0" class="md-raised md-primary" flex-gt-sm flex-order-gt-sm="1" style="float: right;">Next</md-button>
+      </div>
+</form>
+</md-content>
